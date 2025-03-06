@@ -59,12 +59,17 @@ class Line:
         for cell in self.cellsList:
             if cell.letter.upper() in Word.TARGET_WORD:
                 cell.state = States.WRONG_PLACE
-                if index == Word.TARGET_WORD.index(cell.letter.upper()):
+                if cell.letter.upper() == Word.TARGET_WORD[index].upper():
                     cell.state = States.CORRECT
             else:
                 cell.state = States.NOT_IN_WORD
             index +=1 
 
+    def GetWord(self):
+        word = ""
+        for cell in self.cellsList:
+            word += cell.letter
+        return word
 
 class Container:
     GAP = 6
@@ -98,8 +103,9 @@ class Container:
                     pygame.draw.rect(screen,Cell.COLOR_CORRECT,cell.backRect)
                     pygame.draw.rect(screen,Cell.BCOLOR_CORRECT,cell.backRect,1)
                 # Drawing the letter
-                cell.letter_surf = Cell.CELL_FONT.render(cell.letter, True, (255, 255, 255))
-                screen.blit(cell.letter_surf,(cell.backRect.center[0]-cell.backRect.width/5,cell.backRect.center[1]-cell.backRect.height/4))
+                letter_surf = Cell.CELL_FONT.render(cell.letter, True, (255, 255, 255))
+                textRect = letter_surf.get_rect(center=cell.backRect.center)
+                screen.blit(letter_surf,textRect)
 
     def UpdateLinesPos(self):
         startY = self.y
