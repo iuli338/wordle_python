@@ -12,15 +12,15 @@ class Assets:
       screen.blit(Assets.titleSurface,(screen.get_size()[0]/2-Assets.titleSurface.get_size()[0]/2,20))
 
 class Global:
-   container1 = Container(0,0)
-   line1 = Line(container1)
-   cell1 = Cell(line1)
+   screen = pygame.display.set_mode((800 , 600))
+   container1 = Container(5,6)
+   
+Global.container1.SetPosition(Global.screen.get_size()[0]/2,Global.screen.get_size()[1]/2)
 
 def DrawEverything(screen):
    Assets.DrawTitle(screen)
    Global.container1.DrawAll(screen)
 
-screen = pygame.display.set_mode((800 , 600))
 pygame.display.set_caption("Wordly Python")
 appIcon = pygame.image.load('appicon.png')
 pygame.display.set_icon(appIcon)
@@ -31,7 +31,7 @@ while True:
          pygame.quit()
          sys.exit()
    
-   screen.fill(pygame.Color(40,40,40))
-   DrawEverything(screen)
+   Global.screen.fill(pygame.Color(40,40,40))
+   DrawEverything(Global.screen)
    #Draw the window onto the screen
    pygame.display.update()
