@@ -1,17 +1,9 @@
 import pygame, sys
 import os
+from container import Container, Line, Cell
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 pygame.init()
-
-class Cell:
-   cellsList = []
-   def __init__(self,x,y):
-      Cell.cellsList.append(self)
-
-   def DrawAll(screen):
-      for cell in Cell.cellsList:
-         pass
 
 class Assets:
    titleFont = pygame.font.Font(None, 48)
@@ -19,8 +11,14 @@ class Assets:
    def DrawTitle(screen):
       screen.blit(Assets.titleSurface,(screen.get_size()[0]/2-Assets.titleSurface.get_size()[0]/2,20))
 
+class Global:
+   container1 = Container(0,0)
+   line1 = Line(container1)
+   cell1 = Cell(line1)
+
 def DrawEverything(screen):
    Assets.DrawTitle(screen)
+   Global.container1.DrawAll(screen)
 
 screen = pygame.display.set_mode((800 , 600))
 pygame.display.set_caption("Wordly Python")
