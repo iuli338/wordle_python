@@ -56,7 +56,7 @@ def HandleKeyDown(key):
          return
       if  Global.mainContainer.SELECTED_CELL_INDEX >= len(Global.mainContainer.linesList[Global.mainContainer.SELECTED_LINE_INDEX].cellsList):
          inputWord = Global.mainContainer.linesList[Global.mainContainer.SELECTED_LINE_INDEX].GetWord()
-         if not(inputWord.lower() in Word.WORDS):
+         if not(inputWord in Word.WORDS):
             Global.messageBox1.ChangeText(MessageBox.MESS2)
             return
          HandleEnterPress()

@@ -10,4 +10,5 @@ class Word:
             Word.WORDS = json.load(f)
         Word.TARGET_WORD = random.choice(Word.WORDS).upper()
         # Debug
-        #print(Word.TARGET_WORD)
+        # print(Word.WORDS)
+        # print(Word.TARGET_WORD)
