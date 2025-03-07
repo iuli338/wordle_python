@@ -49,6 +49,10 @@ class MessageBox:
         self.visibleFor = framesVisibleFor
         self.visibleTimer = self.visibleFor
 
+    def Hide(self):
+        self.visible = False
+        self.visibleTimer = 0
+
     def DrawAll(screen):
         for box in MessageBox.boxesList:
             if box.visible == False: continue

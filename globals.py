@@ -1,6 +1,7 @@
 import pygame
-from container import Container, Line, Cell
+from container import Container
 from messagebox import MessageBox
+from button import Button
 
 pygame.init()
 
@@ -9,6 +10,9 @@ class Global:
    mainContainer = Container(5,6)
    messageBox1 = MessageBox(screen.get_size()[0]/2,90)
    messageBox2 = MessageBox(screen.get_size()[0]/2,screen.get_size()[1]-30)
+   restartButton = Button(80,screen.get_size()[1]-80,64,64,"restart.png")
+   hintButton = Button(80,screen.get_size()[1]-152,64,64,"hint.png")
+
    clock = pygame.time.Clock()
    canWrite = True
 

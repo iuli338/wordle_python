@@ -54,6 +54,11 @@ class Line:
         self.y = nexY
         self.UpdateCellsPositon()
 
+    def ClearLine(self):
+        for cell in self.cellsList:
+                cell.state = States.STARTING
+                cell.letter = ' '
+
     def CheckLine(self):
         index = 0
         for cell in self.cellsList:
@@ -114,6 +119,12 @@ class Container:
         for line in self.linesList:
             line.SetPosition(self.x,startY)
             startY += Container.GAP + Cell.CELL_SIZE
+
+    def ClearContainer(self):
+        for line in self.linesList:
+            for cell in line.cellsList:
+                cell.state = States.STARTING
+                cell.letter = ' '
 
     def SetPosition(self,nexX,nexY):
         self.x = nexX
