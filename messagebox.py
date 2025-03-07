@@ -20,6 +20,8 @@ class MessageBox:
         self.backRect.center = (x,y)
         self.text = "Text"
         self.visible = False
+        self.visibleFor = 180
+        self.visibleTimer = 0
         MessageBox.boxesList.append(self)
     
     def UpdateRect(self):
@@ -28,10 +30,24 @@ class MessageBox:
         self.backRect.width = textRect.width + 40
         self.backRect.center = (self.x,self.y)
 
-    def ChangeText(self,text):
+    def UpdateVisibleTimer():
+        for box in MessageBox.boxesList:
+            if box.visible == False: return
+            # -1 means it will stay visible forever
+            if box.visibleTimer == -1: return
+            box.visibleTimer -= 1
+            if (box.visibleTimer == 0):
+                box.visible = False
+                box.visibleTimer = 0
+
+
+    def ChangeText(self,text,framesVisibleFor):
         self.text = text
         self.UpdateRect()
         self.visible = True
+
+        self.visibleFor = framesVisibleFor
+        self.visibleTimer = self.visibleFor
 
     def DrawAll(screen):
         for box in MessageBox.boxesList:
