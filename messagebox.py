@@ -12,6 +12,7 @@ class MessageBox:
     MESS2 = "Incearca alt cuvant"
     MESS3 = "Ai casticat =D"
     MESS4 = "Ai pierdut :("
+    MESS5 = "Cuvantul s-a schimbat"
 
     def __init__(self,x,y):
         self.x = x

@@ -18,7 +18,7 @@ class Global:
 
 class Assets:
    titleFont = pygame.font.Font(None, 48)
-   titleSurface = titleFont.render("Wordly Python", True, (255, 255, 255))
+   titleSurface = titleFont.render("Wordle Python", True, (255, 255, 255))
    def DrawTitle(screen):
       screen.blit(Assets.titleSurface,(screen.get_size()[0]/2-Assets.titleSurface.get_size()[0]/2,20))
    LETTERS = ['A', 'B', 'C', 'D', 'E', 'F','U', 'G', 'H','J', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'V', 'X', 'Y', 'Z']

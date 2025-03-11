@@ -20,7 +20,7 @@ def DrawEverything(screen):
    MessageBox.DrawAll(screen)
    Button.DrawAll(screen)
 
-pygame.display.set_caption("Wordly Python")
+pygame.display.set_caption("Wordle Python")
 appIcon = pygame.image.load('appicon.png')
 pygame.display.set_icon(appIcon)
 

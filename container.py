@@ -25,6 +25,13 @@ class Cell:
     BORDER_COLOR2 = pygame.Color(255,255,255)
     CELL_FONT = pygame.font.Font(None, 48)
 
+    STATE_TO_COLOR = {
+        # Current state of the cell : [Color of the cell, Border color]
+        States.NOT_IN_WORD : [COLOR_NOT_IN_WORD,BCOLOR_NOT_IN_WORD],
+        States.WRONG_PLACE : [COLOR_WRONG_PLACE,BCOLOR_WRONG_PLACE],
+        States.CORRECT : [COLOR_CORRECT,BCOLOR_CORRECT]
+    }
+
     def __init__(self,line):
         self.backRect = pygame.Rect(20, 20, Cell.CELL_SIZE, Cell.CELL_SIZE)
         self.letter = ' '
@@ -94,19 +101,16 @@ class Container:
         for line in self.linesList:
             for cell in line.cellsList:
                 if cell.state == States.STARTING:
+                    # When is on selected layer
                     pygame.draw.rect(screen,Cell.RECT_COLOR,cell.backRect)
                     borderWidth = 1 if cell.letter == ' ' else 2
                     borderColor = Cell.BORDER_COLOR1 if cell.letter == ' ' else Cell.BORDER_COLOR2
                     pygame.draw.rect(screen,borderColor,cell.backRect,borderWidth)
-                elif cell.state == States.NOT_IN_WORD:
-                    pygame.draw.rect(screen,Cell.COLOR_NOT_IN_WORD,cell.backRect)
-                    pygame.draw.rect(screen,Cell.BCOLOR_NOT_IN_WORD,cell.backRect,1)
-                elif cell.state == States.WRONG_PLACE:
-                    pygame.draw.rect(screen,Cell.COLOR_WRONG_PLACE,cell.backRect)
-                    pygame.draw.rect(screen,Cell.BCOLOR_WRONG_PLACE,cell.backRect,1)
-                elif cell.state == States.CORRECT:
-                    pygame.draw.rect(screen,Cell.COLOR_CORRECT,cell.backRect)
-                    pygame.draw.rect(screen,Cell.BCOLOR_CORRECT,cell.backRect,1)
+                else:
+                    # After the layer was typed
+                    pygame.draw.rect(screen,Cell.STATE_TO_COLOR[cell.state][0],cell.backRect)
+                    pygame.draw.rect(screen,Cell.STATE_TO_COLOR[cell.state][1],cell.backRect,1)
+
                 # Drawing the letter
                 letter_surf = Cell.CELL_FONT.render(cell.letter, True, (255, 255, 255))
                 textRect = letter_surf.get_rect(center=cell.backRect.center)

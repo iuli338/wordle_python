@@ -13,6 +13,8 @@ def RestartGame():
    Global.mainContainer.SELECTED_LINE_INDEX = 0
    Global.messageBox1.Hide()
    Global.messageBox2.Hide()
+   Global.canWrite = True
+   Global.messageBox1.ChangeText(MessageBox.MESS5,400)
 
 def ShowHint():
    msg = "Cuvantul contine litera \"" + Word.TARGET_WORD[Word.HINT_INDEX] + "\" pe pozitia " + str(Word.HINT_INDEX+1)
